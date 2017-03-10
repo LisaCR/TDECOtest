@@ -2,6 +2,8 @@ package fr.adaming.dao;
 
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +12,7 @@ import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 
 @Repository("adminDao")
-public class AdminDaoImpl extends HibernateDaoSupport implements IAdminDao {
+public class AdminDaoImpl implements IAdminDao {
 
 	@Override
 	public void isExist(Admin admin) {

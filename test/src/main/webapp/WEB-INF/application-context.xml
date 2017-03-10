@@ -10,20 +10,22 @@
 
 	<context:component-scan base-package="fr.adaming" />
 
-	<context:property-placeholder location="classpath*:data-source-info.properties" />
+	<context:property-placeholder location="classpath*:datasource-info.properties" />
 
 	<bean id="dataSourceBean"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${db.driverClassName}" />
+		<property name="driverClassName" value="${db.driver}" />
 		<property name="url" value="${db.url}" />
 		<property name="username" value="${db.username}" />
 		<property name="password" value="${db.password}" />
 	</bean>
 
-
+<!-- configuration d'hibernate passe par la création d'une sessionFactory
+contient les infos d'hibernate et notamment les infos de mapping
+créé session d'hibernate : point d'entrée pour une unité de travail de persistance -->
 	<bean id="sessionFactoryBean"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-
+<!-- injection d'une dataSource pour la  création de la SessionFactory -->
 		<property name="dataSource" ref="dataSourceBean" />
 
 		<property name="packagesToScan" value="fr.adaming.model" />
