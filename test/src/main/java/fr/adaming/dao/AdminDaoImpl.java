@@ -2,6 +2,7 @@ package fr.adaming.dao;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
@@ -14,6 +15,18 @@ import fr.adaming.model.Produit;
 @Repository("adminDao")
 public class AdminDaoImpl implements IAdminDao {
 
+	/**
+	 * création de la SessionFactory
+	 */
+	@Autowired
+	private SessionFactory sf;
+
+
+	public void setSf(SessionFactory sf) {
+		this.sf = sf;
+	}
+	
+
 	@Override
 	public void isExist(Admin admin) {
 		// TODO Auto-generated method stub
@@ -22,8 +35,9 @@ public class AdminDaoImpl implements IAdminDao {
 
 	@Override
 	public Admin addAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		return null;
+		Session s=sf.getCurrentSession();
+		s.save(admin);
+		return admin;
 	}
 
 	@Override
