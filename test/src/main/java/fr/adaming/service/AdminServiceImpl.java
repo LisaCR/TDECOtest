@@ -20,12 +20,19 @@ public class AdminServiceImpl implements IAdminService {
 		this.adminDao = adminDao;
 	}
 
+	/**
+	 * méthodes d'authentification et de gestion des admin
+	 */
 	@Override
 	public void isExist(Admin admin) {
 		// TODO Auto-generated method stub
-		
 	}
 
+	@Override
+	public List<Admin> getAllAdmin() {
+		return adminDao.getAllAdmin();
+	}
+	
 	@Override
 	public Admin addAdmin(Admin admin) {
 		// TODO Auto-generated method stub
@@ -37,6 +44,8 @@ public class AdminServiceImpl implements IAdminService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 
 }

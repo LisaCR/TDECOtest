@@ -13,7 +13,9 @@ public interface IAdminService {
 	 */ 
 	
 	public void isExist(Admin admin);
+	public List<Admin> getAllAdmin();
 	public Admin addAdmin(Admin admin);
 	public Admin gestionAdmin(Admin admin);
+
 	
 }
