@@ -28,5 +28,12 @@ public class CategorieServiceImpl implements ICategorieService{
 		return categorieDao.getAllCategorie();
 	}
 
+
+	@Override
+	public Categorie getCategorieById(int id_cat) {
+		
+		return categorieDao.getCategorieById(id_cat);
+	}
+
 	
 }

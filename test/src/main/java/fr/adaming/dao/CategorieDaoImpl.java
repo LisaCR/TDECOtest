@@ -31,5 +31,13 @@ public class CategorieDaoImpl implements ICategorieDao{
 		return query.list();
 	}
 
+	@Override
+	public Categorie getCategorieById(int id_cat) {
+		Session s = sf.getCurrentSession();
+		Categorie cat = (Categorie) s.get(Categorie.class, id_cat);
+		
+		return cat;
+	}
+
 	
 }
