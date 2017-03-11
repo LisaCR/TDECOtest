@@ -26,9 +26,9 @@
 		</tr>
 		<c:forEach var="admin" items="${adminListe}">
 			<tr bgcolor="lightyellow">
-				<td>${admin.id}</td>
-				<td>${admin.nom}</td>
-				<td>${admin.mail}</td>
+				<td>${admin.idAdmin}</td>
+				<td>${admin.nomAdmin}</td>
+				<td>${admin.passwordAdmin}</td>
 				<%-- <td><a href="soumettreFormSuppr/${admin.id}">Supprimer</a> | <a href="affichFormmodif?id_param=${admin.id}">Editer</a> </td> --%>
 			</tr>
 

@@ -20,19 +20,19 @@
 		<table>
 
 <tr>
-	<td>${adminForm.id}</td>
-				<td><form:input path="id" type="hidden" /></td>
+	<td>${adminForm.idAdmin}</td>
+				<td><form:input path="idAdmin" type="hidden" /></td>
 
 			</tr>
 			<tr>
-				<td><form:label path="nom">Nom: </form:label></td>
-				<td><form:input path="nom" /></td>
-				<td><form:errors path="nom" cssStyle="color:red"/></td>
+				<td><form:label path="nomAdmin">Nom: </form:label></td>
+				<td><form:input path="nomAdmin" /></td>
+				<td><form:errors path="nomAdmin" cssStyle="color:red"/></td>
 			</tr>
 			<tr>
-				<td><form:label path="password">Password: </form:label></td>
-				<td><form:input path="password" /></td>
-				<td><form:errors path="password" cssStyle="color:red"/></td>
+				<td><form:label path="passwordAdmin">Password: </form:label></td>
+				<td><form:input path="passwordAdmin" /></td>
+				<td><form:errors path="passwordAdmin" cssStyle="color:red"/></td>
 			</tr>
 
 

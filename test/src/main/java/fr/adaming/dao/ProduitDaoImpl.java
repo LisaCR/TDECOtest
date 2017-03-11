@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import fr.adaming.model.Admin;
+import fr.adaming.model.Produit;
 
 
-@Repository("adminDao")
+@Repository("produitDao")
 @Transactional
-public class AdminDaoImpl implements IAdminDao {
+public class ProduitDaoImpl implements IProduitDao {
 
 	/**
 	 * création de la SessionFactory
@@ -29,51 +29,39 @@ public class AdminDaoImpl implements IAdminDao {
 	
 
 	@Override
-	public void isExist(Admin admin) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public List<Admin> getAllAdmin() {
-		String req="FROM Admin";
+	public List<Produit> getAllProduit() {
+		String req="FROM Produit";
 		Session s=sf.getCurrentSession();
 		Query query=s.createQuery(req);
 		return query.list();
 	}
 	
 	@Override
-	public Admin getAdminById(int idAdmin) {
+	public Produit getProduitById(int idProduit) {
 		Session s=sf.getCurrentSession();
-		return (Admin) s.get(Admin.class, idAdmin);
+		return (Produit) s.get(Produit.class, idProduit);
 	}
 
 	@Override
-	public void updateAdmin(Admin admin) {
+	public void updateProduit(Produit produit) {
 //		Session s=sf.getCurrentSession();
-//		s.saveOrUpdate(admin);
+//		s.saveOrUpdate(produit);
 	}
 	
 	
 	
 	@Override
-	public Admin addAdmin(Admin admin) {
+	public Produit addProduit(Produit produit) {
 		Session s=sf.getCurrentSession();
-		s.save(admin);
-		return admin;
-	}
-
-	@Override
-	public Admin gestionAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		return null;
+		s.save(produit);
+		return produit;
 	}
 
 
 	@Override
-	public void deleteAdmin(Admin admin) {
+	public void deleteProduit(Produit produit) {
 		Session s=sf.getCurrentSession();
-		s.delete(admin);
+		s.delete(produit);
 	}
 
 

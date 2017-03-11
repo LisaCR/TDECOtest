@@ -16,19 +16,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import fr.adaming.model.Admin;
-import fr.adaming.service.IAdminService;
+import fr.adaming.model.Produit;
+import fr.adaming.service.IProduitService;
 
 @Controller
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping("/produit")
+public class ProduitController {
 	
 	
 	@Autowired
-	private IAdminService adminService;
+	private IProduitService produitService;
 
-	public void setAdminService(IAdminService adminService) {
-		this.adminService = adminService;
+	public void setProduitService(IProduitService produitService) {
+		this.produitService = produitService;
 	}
 
 /**
@@ -36,7 +36,7 @@ public class AdminController {
  */
 	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
 	public String accueil(ModelMap model) {
-		model.addAttribute("nomApp", "APPLICATION DE GESTION DES ADMINS");
+		model.addAttribute("nomApp", "APPLICATION DE GESTION DES PRODUITS");
 
 		model.addAttribute("salutation", "Avec SPRING MVC");
 
@@ -44,63 +44,63 @@ public class AdminController {
 	}
 	
 	/**
-	 * Afficher liste admin
+	 * Afficher liste produit
 	 */
-	@RequestMapping(value = "/listeAdmin", method = RequestMethod.GET)
-	public String afficherAdmin(ModelMap model) {
-		List<Admin> listeAdmin = adminService.getAllAdmin();
+	@RequestMapping(value = "/listeProduit", method = RequestMethod.GET)
+	public String afficherProduit(ModelMap model) {
+		List<Produit> listeProduit = produitService.getAllProduit();
 
-		model.addAttribute("adminListe", listeAdmin);
+		model.addAttribute("produitListe", listeProduit);
 
-		return "afficherListe";
+		return "afficherListeProduit";
 	}
 	
 	
 	/**
-	 * update d'admin
+	 * update d'produit
 	 */
 	
 	
 	
 
 	/**
-	 * Ajout d'admin
+	 * Ajout d'produit
 	 */
 	
 	// Methode pour afficher le formulaire d'ajout et lui attribuer le modele
 	@RequestMapping(value = "/affichFormAjout", method = RequestMethod.GET)
 	public ModelAndView affichFormAjout() {
-		return new ModelAndView("ajouterAdmin", "adminForm", new Admin());
+		return new ModelAndView("ajouterProduit", "produitForm", new Produit());
 	}
 	
 	// Methode pour soummettre le formulaire d'ajout et lui attribuer le modele
 	@RequestMapping(value = "/soumettreFormAjout", method = RequestMethod.POST)
-	public String soumettreFormAjout(Model model, @Valid @ModelAttribute("adminForm") Admin admin,BindingResult resultatValidation ) {
+	public String soumettreFormAjout(Model model, @Valid @ModelAttribute("produitForm") Produit produit,BindingResult resultatValidation ) {
 		if(resultatValidation.hasErrors()){
-			return "ajouterAdmin";
+			return "ajouterProduit";
 		}
-		if(admin.getIdAdmin()==0){
+		if(produit.getIdProduit()==0){
 		// appel de la methode ajouter du service
-		adminService.addAdmin(admin);
+		produitService.addProduit(produit);
 		}
 		
 //		else{
 //			/**
 //			 * appel de la méthode update du service
 //			 */
-//			adminService.updateAdmin(admin);
+//			produitService.updateProduit(produit);
 //		}
 		// rafraichissement de la liste
-		List<Admin> listeAdmin = adminService.getAllAdmin();
+		List<Produit> listeProduit = produitService.getAllProduit();
 
-		model.addAttribute("adminListe", listeAdmin);
+		model.addAttribute("produitListe", listeProduit);
 
-		return "afficherListe";
+		return "afficherListeProduit";
 	}
 	
 	
 	/**
-	 * suppression admin
+	 * suppression produit
 	 */
 	
 	 // Méthode pour afficher le formulaire de suppression
@@ -111,26 +111,26 @@ public class AdminController {
 	
 	
 	@RequestMapping(value = "/soumettreFormSuppr/{id_param}", method = RequestMethod.GET)
-	public String soumettreformulaireSuppr(Model model,@PathVariable("id_param") int idAdmin){
-		// appel de la methode getById de service pour chercher l'admin avec l'id recupéré
-		Admin admin=adminService.getAdminById(idAdmin);
+	public String soumettreformulaireSuppr(Model model,@PathVariable("id_param") int idProduit){
+		// appel de la methode getById de service pour chercher l'produit avec l'id recupéré
+		Produit produit=produitService.getProduitById(idProduit);
 		// Appel de la methode delete de service
-		adminService.deleteAdmin(admin);
+		produitService.deleteProduit(produit);
 		// raffraichissement de la liste
-		List<Admin> listeAdmin = adminService.getAllAdmin();
+		List<Produit> listeProduit = produitService.getAllProduit();
 
-		model.addAttribute("adminListe", listeAdmin);
+		model.addAttribute("produitListe", listeProduit);
 		
-		return "afficherListe";
+		return "afficherListeProduit";
 	}
 
 	 // Méthode pour afficher le formulaire de suppression
 		@RequestMapping(value = "/affichFormmodif", method = RequestMethod.GET)
-		public String affichFormModif(ModelMap model,@RequestParam("id_param") int idAdmin ){
-			Admin admin=adminService.getAdminById(idAdmin);
-			model.addAttribute("adminForm", admin);
+		public String affichFormModif(ModelMap model,@RequestParam("id_param") int idProduit ){
+			Produit produit=produitService.getProduitById(idProduit);
+			model.addAttribute("produitForm", produit);
 			
-			return "ajouterAdmin";
+			return "ajouterProduit";
 		}
 	
 	

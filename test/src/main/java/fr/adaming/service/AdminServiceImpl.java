@@ -34,9 +34,13 @@ public class AdminServiceImpl implements IAdminService {
 	}
 	
 	@Override
+	public Admin getAdminById(int id) {
+		return adminDao.getAdminById(id);
+	}
+	
+	@Override
 	public Admin addAdmin(Admin admin) {
-		// TODO Auto-generated method stub
-		return null;
+		return adminDao.addAdmin(admin);
 	}
 
 	@Override
@@ -44,6 +48,18 @@ public class AdminServiceImpl implements IAdminService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void updateAdmin(Admin admin) {
+		adminDao.updateAdmin(admin);
+	}
+
+	@Override
+	public void deleteAdmin(Admin admin) {
+		adminDao.deleteAdmin(admin);
+	}
+
+
 
 
 
