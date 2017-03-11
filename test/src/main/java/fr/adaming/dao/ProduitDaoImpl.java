@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.adaming.model.Produit;
 
 @Repository("produitDao")
-@Transactional
+
 public class ProduitDaoImpl implements IProduitDao {
 
 	/**
