@@ -43,7 +43,6 @@ public class Categorie implements Serializable {
  * 	clé étrangère de la classe Produit : association d'une liste de produit à une catégorie
  */
 	@OneToMany(mappedBy="categorie" , cascade = CascadeType.ALL, orphanRemoval = true)
-	
 	private List<Produit> listProduit;
 	
 /**
