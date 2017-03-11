@@ -4,14 +4,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<!DOCTYPE html>
-<html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-	<h1 align="center">liste Produit</h1>
+	<h1 align="center">liste Categorie</h1>
 
 	<c:if test="${not empty msg}">
 		    <div class="alert alert-${css} alert-dismissible" role="alert">
@@ -28,29 +27,21 @@
 		<tr bgcolor="grey" style="color:white">
 			<th>ID</th>
 			<th>Description</th>
-			<th>Désignation</th>
-			<th>Prix</th>
-			<th>Quantité</th>
- 			<th>Catégorie id</th> 
+			<th>Nom</th>
  			<th>Action</th> 
 <!-- 			<th>Supp/Edit</th> -->
 		</tr>
-		<c:forEach var="produit" items="${produitListe}">
+		<c:forEach var="categorie" items="${categorieListe}">
 			<tr bgcolor="lightyellow">
-				<td>${produit.idProduit}</td>
-				<td>${produit.description}</td>
-				<td>${produit.designation}</td>
-				<td>${produit.prix}</td>
-				<td>${produit.quantite}</td>
- 				<td>${produit.categorie}</td>
-
-
+				<td>${categorie.idCategorie}</td>
+				<td>${categorie.description}</td>
+				<td>${categorie.nomCategorie}</td>
 		<td>
-				  <spring:url value="/produit/${produit.idProduit}" var="produitUrl" />
-				  <spring:url value="/produit/${produit.idProduit}/delete" var="deleteUrl" />
-				  <spring:url value="/produit/${produit.idProduit}/update" var="updateUrl" />
+				  <spring:url value="/categorie/${categorie.idCategorie}" var="categorieUrl" />
+				  <spring:url value="/categorie/${categorie.idCategorie}/delete" var="deleteUrl" />
+				  <spring:url value="/categorie/${categorie.idCategorie}/update" var="updateUrl" />
 
-				  <button class="btn btn-info" onclick="location.href='${produitUrl}'">Query</button>
+				  <button class="btn btn-info" onclick="location.href='${categorieUrl}'">Query</button>
 				  <button class="btn btn-primary" onclick="location.href='${updateUrl}'">Update</button>
 				  <button class="btn btn-danger" onclick="location.href='${deleteUrl}'">Delete</button>
                   </td>
@@ -60,7 +51,7 @@
 
 	</table>
 	
-	<spring:url value="/produit/${produit.idProduit}/affichFormAjout" var="addUrl" />
+	<spring:url value="/categorie/${categorie.idCategorie}/affichFormAjout" var="addUrl" />
 <button class="btn btn-danger" onclick="location.href='${addUrl}'">Add</button>
                                           
 </body>

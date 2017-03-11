@@ -14,10 +14,10 @@ public interface IAdminService {
 	
 	public void isExist(Admin admin);
 	public List<Admin> getAllAdmin();
-	public Admin getAdminById(int id);
+	public Admin getAdminById(long id);
 	public Admin addAdmin(Admin admin);
 	public Admin gestionAdmin(Admin admin);
 	public void updateAdmin(Admin admin);
-	public void deleteAdmin(int id);
+	public void deleteAdmin(Admin admin);
 	
 }

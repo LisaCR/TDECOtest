@@ -43,15 +43,15 @@ public class AdminDaoImpl implements IAdminDao {
 	}
 	
 	@Override
-	public Admin getAdminById(int idAdmin) {
+	public Admin getAdminById(long idAdmin) {
 		Session s=sf.getCurrentSession();
 		return (Admin) s.get(Admin.class, idAdmin);
 	}
 
 	@Override
 	public void updateAdmin(Admin admin) {
-//		Session s=sf.getCurrentSession();
-//		s.saveOrUpdate(admin);
+		Session s=sf.getCurrentSession();
+		s.saveOrUpdate(admin);
 	}
 	
 	
@@ -71,20 +71,11 @@ public class AdminDaoImpl implements IAdminDao {
 
 
 	@Override
-	public void deleteAdmin(int id) {
+	public void deleteAdmin(Admin admin) {
 		Session s=sf.getCurrentSession();
-		s.delete(Admin.class);
+		s.delete(admin);
 	}
 
 
-
-
-
-
-
-
-
-
-	
 	
 }

@@ -23,5 +23,11 @@ public interface ICategorieDao {
 	 * Charge la catégorie depuis la DB en fonction de son ID.
 	 * @return Un objet de type Categorie.
 	 */
-	public Categorie getCategorieById(int id_cat);
+	public Categorie getCategorieById(long id_cat);
+	
+	
+	public Categorie addCategorie(Categorie categorie);
+	
+	
+	public void deleteCategorie(Categorie categorie);
 }

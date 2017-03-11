@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.hibernate.annotations.common.util.impl.Log_.logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -24,57 +22,63 @@ import fr.adaming.service.IAdminService;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	
-	
+
+
 	@Autowired
 	private IAdminService adminService;
-
 	public void setAdminService(IAdminService adminService) {
 		this.adminService = adminService;
 	}
 
-/**
- * définition et mapping accueil
- */
+	/**
+	 * définition et mapping accueil
+	 */
 	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
 	public String accueil(ModelMap model) {
 		model.addAttribute("nomApp", "APPLICATION DE GESTION DES ADMINS");
-
 		model.addAttribute("salutation", "Avec SPRING MVC");
-
 		return "accueil";
 	}
-	
+
 	/**
 	 * Afficher liste admin
 	 */
 	@RequestMapping(value = "/listeAdmin", method = RequestMethod.GET)
 	public String afficherAdmin(ModelMap model) {
 		List<Admin> listeAdmin = adminService.getAllAdmin();
-
 		model.addAttribute("adminListe", listeAdmin);
-
 		return "afficherListe";
 	}
-	
-	
+
+
 	/**
 	 * update d'admin
 	 */
-	
-	
-	
+	@RequestMapping(value = "/admin/{id}/update", method = RequestMethod.GET)
+	public String showUpdateUserForm(@PathVariable("id") int id, Model model) {
+
+
+		Admin admin = adminService.getAdminById(id);
+		model.addAttribute("adminForm", admin);
+
+		// rafraichissement de la liste
+		List<Admin> listeAdmin = adminService.getAllAdmin();
+
+		model.addAttribute("adminListe", listeAdmin);
+
+		return "adminForm";
+	}
+
 
 	/**
 	 * Ajout d'admin
 	 */
-	
 	// Methode pour afficher le formulaire d'ajout et lui attribuer le modele
 	@RequestMapping(value = "/affichFormAjout", method = RequestMethod.GET)
 	public ModelAndView affichFormAjout() {
 		return new ModelAndView("ajouterAdmin", "adminForm", new Admin());
 	}
-	
+
 	// Methode pour soummettre le formulaire d'ajout et lui attribuer le modele
 	@RequestMapping(value = "/soumettreFormAjout", method = RequestMethod.POST)
 	public String soumettreFormAjout(Model model, @Valid @ModelAttribute("adminForm") Admin admin,BindingResult resultatValidation ) {
@@ -82,16 +86,16 @@ public class AdminController {
 			return "ajouterAdmin";
 		}
 		if(admin.getIdAdmin()==0){
-		// appel de la methode ajouter du service
-		adminService.addAdmin(admin);
+			// appel de la methode ajouter du service
+			adminService.addAdmin(admin);
 		}
-		
-//		else{
-//			/**
-//			 * appel de la méthode update du service
-//			 */
-//			adminService.updateAdmin(admin);
-//		}
+
+				else{
+					/**
+					 * appel de la méthode update du service
+					 */
+					adminService.updateAdmin(admin);
+				}
 		// rafraichissement de la liste
 		List<Admin> listeAdmin = adminService.getAllAdmin();
 
@@ -99,31 +103,35 @@ public class AdminController {
 
 		return "afficherListe";
 	}
-	
-	
+
+
 	/**
 	 * suppression admin
 	 */
+	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+	public String deleteAdmin(Model model, @PathVariable("id") long id) {
 
-	
-	// delete user
-		@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
-		public String deleteUser(@PathVariable("id") int id,
-			final RedirectAttributes redirectAttributes) {
 
-//			logger.debug("deleteUser() : {}", id);
+		Admin admin = adminService.getAdminById(id);
 
-			adminService.deleteAdmin(id);
+		adminService.deleteAdmin(admin);
 
-//			redirectAttributes.addFlashAttribute("css", "success");
-//			redirectAttributes.addFlashAttribute("msg", "User is deleted!");
+		/**
+		 * rafraichissement de la liste et affichage d'un message d'alerte
+		 */
+		List<Admin> listeAdmin = adminService.getAllAdmin();
 
-			return "afficherListe";
+		model.addAttribute("adminListe", listeAdmin);
+		model.addAttribute("css", "success");
+		model.addAttribute("msg", "Admin is deleted!");
 
-		}
 
-	
-	
-	
-	
+		return "afficherListe";
+
+	}
+
+
+
+
+
 }

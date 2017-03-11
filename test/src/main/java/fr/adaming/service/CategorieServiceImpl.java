@@ -30,9 +30,21 @@ public class CategorieServiceImpl implements ICategorieService{
 
 
 	@Override
-	public Categorie getCategorieById(int id_cat) {
+	public Categorie getCategorieById(long id_cat) {
 		
 		return categorieDao.getCategorieById(id_cat);
+	}
+
+
+	@Override
+	public Categorie addCategorie(Categorie categorie) {
+		return categorieDao.addCategorie(categorie);
+	}
+
+
+	@Override
+	public void deleteCategorie(Categorie categorie) {
+		categorieDao.deleteCategorie(categorie);
 	}
 
 	

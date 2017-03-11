@@ -15,22 +15,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import fr.adaming.model.Admin;
+import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
-import fr.adaming.service.IProduitService;
+import fr.adaming.service.ICategorieService;
 
 @Controller
-@RequestMapping("/produit")
-public class ProduitController {
+@RequestMapping("/categorie")
+public class CategorieController {
 	
 	
 	@Autowired
-	private IProduitService produitService;
+	private ICategorieService categorieService;
 
-	public void setProduitService(IProduitService produitService) {
-		this.produitService = produitService;
+	public void setCategorieService(ICategorieService categorieService) {
+		this.categorieService = categorieService;
 	}
 
 /**
@@ -38,7 +37,7 @@ public class ProduitController {
  */
 	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
 	public String accueil(ModelMap model) {
-		model.addAttribute("nomApp", "APPLICATION DE GESTION DES PRODUITS");
+		model.addAttribute("nomApp", "APPLICATION DE GESTION DES CATEGORIES");
 
 		model.addAttribute("salutation", "Avec SPRING MVC");
 
@@ -46,87 +45,86 @@ public class ProduitController {
 	}
 	
 	/**
-	 * Afficher liste produit
+	 * Afficher liste categorie
 	 */
-	@RequestMapping(value = "/listeProduit", method = RequestMethod.GET)
-	public String afficherProduit(ModelMap model) {
-		List<Produit> listeProduit = produitService.getAllProduit();
+	@RequestMapping(value = "/listeCategorie", method = RequestMethod.GET)
+	public String afficherCategorie(ModelMap model) {
+		List<Categorie> listeCategorie = categorieService.getAllCategorie();
 
-		model.addAttribute("produitListe", listeProduit);
+		model.addAttribute("categorieListe", listeCategorie);
 
-		return "afficherListeProduit";
+		return "afficherListeCategorie";
 	}
 	
 	
 	/**
-	 * update d'produit
+	 * update d'categorie
 	 */
 	
 	
 	
 
 	/**
-	 * Ajout d'produit
+	 * Ajout d'categorie
 	 */
 	
 	// Methode pour afficher le formulaire d'ajout et lui attribuer le modele
 	@RequestMapping(value = "/affichFormAjout", method = RequestMethod.GET)
 	public ModelAndView affichFormAjout() {
-		return new ModelAndView("ajouterProduit", "produitForm", new Produit());
+		return new ModelAndView("ajouterCategorie", "categorieForm", new Categorie());
 	}
 	
 	// Methode pour soummettre le formulaire d'ajout et lui attribuer le modele
 	@RequestMapping(value = "/soumettreFormAjout", method = RequestMethod.POST)
-	public String soumettreFormAjout(Model model, @Valid @ModelAttribute("produitForm") Produit produit,BindingResult resultatValidation ) {
+	public String soumettreFormAjout(Model model, @Valid @ModelAttribute("categorieForm") Categorie categorie,BindingResult resultatValidation ) {
 		if(resultatValidation.hasErrors()){
-			return "ajouterProduit";
+			return "ajouterCategorie";
 		}
-		if(produit.getIdProduit()==0){
+		if(categorie.getIdCategorie()==0){
 		// appel de la methode ajouter du service
-		produitService.addProduit(produit);
+		categorieService.addCategorie(categorie);
 		}
 		
 //		else{
 //			/**
 //			 * appel de la méthode update du service
 //			 */
-//			produitService.updateProduit(produit);
+//			categorieService.updateCategorie(categorie);
 //		}
 		// rafraichissement de la liste
-		List<Produit> listeProduit = produitService.getAllProduit();
+		List<Categorie> listeCategorie = categorieService.getAllCategorie();
 
-		model.addAttribute("produitListe", listeProduit);
+		model.addAttribute("categorieListe", listeCategorie);
 
-		return "afficherListeProduit";
+		return "afficherListeCategorie";
 	}
 	
 	
 	/**
-	 * suppression produit
+	 * suppression categorie
 	 */
 	
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
-	public String deleteProduit(Model model, @PathVariable("id") long id) {
+	public String deleteCategorie(Model model, @PathVariable("id") long id) {
 
 
-		Produit produit = produitService.getProduitById(id);
+		Categorie categorie = categorieService.getCategorieById(id);
 
-		produitService.deleteProduit(produit);
+		categorieService.deleteCategorie(categorie);
 
 		/**
 		 * rafraichissement de la liste et affichage d'un message d'alerte
 		 */
-		List<Produit> listeProduit = produitService.getAllProduit();
+		List<Categorie> listeCategorie = categorieService.getAllCategorie();
 
-		model.addAttribute("produitListe", listeProduit);
+		model.addAttribute("categorieListe", listeCategorie);
 		model.addAttribute("css", "success");
-		model.addAttribute("msg", "Produit is deleted!");
+		model.addAttribute("msg", "Categorie is deleted!");
 
 
-		return "afficherListeProduit";
+		return "afficherListeCategorie";
 
 	}
-	
 	
 	
 }

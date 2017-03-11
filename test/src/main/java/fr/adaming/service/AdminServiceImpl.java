@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.adaming.dao.IAdminDao;
 import fr.adaming.model.Admin;
@@ -34,7 +35,7 @@ public class AdminServiceImpl implements IAdminService {
 	}
 	
 	@Override
-	public Admin getAdminById(int id) {
+	public Admin getAdminById(long id) {
 		return adminDao.getAdminById(id);
 	}
 	
@@ -55,8 +56,8 @@ public class AdminServiceImpl implements IAdminService {
 	}
 
 	@Override
-	public void deleteAdmin(int id) {
-		adminDao.deleteAdmin(id);
+	public void deleteAdmin(Admin admin) {
+		adminDao.deleteAdmin(admin);
 	}
 
 

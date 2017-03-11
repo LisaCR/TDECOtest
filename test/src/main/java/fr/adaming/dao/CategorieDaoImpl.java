@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 
 import fr.adaming.model.Categorie;
+import fr.adaming.model.Categorie;
 
 /**
  * 
@@ -32,11 +33,24 @@ public class CategorieDaoImpl implements ICategorieDao{
 	}
 
 	@Override
-	public Categorie getCategorieById(int id_cat) {
+	public Categorie getCategorieById(long id_cat) {
 		Session s = sf.getCurrentSession();
 		Categorie cat = (Categorie) s.get(Categorie.class, id_cat);
 		
 		return cat;
+	}
+	
+	@Override
+	public Categorie addCategorie(Categorie categorie) {
+		Session s = sf.getCurrentSession();
+		s.save(categorie);
+		return categorie;
+	}
+
+	@Override
+	public void deleteCategorie(Categorie categorie) {
+		Session s = sf.getCurrentSession();
+		s.delete(categorie);
 	}
 
 	
