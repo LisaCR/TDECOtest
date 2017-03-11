@@ -13,7 +13,7 @@ public interface IAdminDao {
 	public Admin addAdmin(Admin admin);
 	public Admin gestionAdmin(Admin admin);
 	public void updateAdmin(Admin admin);
-	public void deleteAdmin(Admin admin);
+	public void deleteAdmin(int id);
 
 
 	

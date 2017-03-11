@@ -71,9 +71,9 @@ public class AdminDaoImpl implements IAdminDao {
 
 
 	@Override
-	public void deleteAdmin(Admin admin) {
+	public void deleteAdmin(int id) {
 		Session s=sf.getCurrentSession();
-		s.delete(admin);
+		s.delete(Admin.class);
 	}
 
 

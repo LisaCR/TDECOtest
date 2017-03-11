@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.hibernate.annotations.common.util.impl.Log_.logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.adaming.model.Admin;
 import fr.adaming.service.IAdminService;
@@ -102,36 +104,24 @@ public class AdminController {
 	/**
 	 * suppression admin
 	 */
-	
-	 // Méthode pour afficher le formulaire de suppression
-	@RequestMapping(value = "/affichFormSupp", method = RequestMethod.GET)
-	public String affichFormSuppress(){
-		return "supprimer";
-	}
-	
-	
-	@RequestMapping(value = "/soumettreFormSuppr/{id_param}", method = RequestMethod.GET)
-	public String soumettreformulaireSuppr(Model model,@PathVariable("id_param") int idAdmin){
-		// appel de la methode getById de service pour chercher l'admin avec l'id recupéré
-		Admin admin=adminService.getAdminById(idAdmin);
-		// Appel de la methode delete de service
-		adminService.deleteAdmin(admin);
-		// raffraichissement de la liste
-		List<Admin> listeAdmin = adminService.getAllAdmin();
 
-		model.addAttribute("adminListe", listeAdmin);
-		
-		return "afficherListe";
-	}
+	
+	// delete user
+		@RequestMapping(value = "/{id}/delete", method = RequestMethod.POST)
+		public String deleteUser(@PathVariable("id") int id,
+			final RedirectAttributes redirectAttributes) {
 
-	 // Méthode pour afficher le formulaire de suppression
-		@RequestMapping(value = "/affichFormmodif", method = RequestMethod.GET)
-		public String affichFormModif(ModelMap model,@RequestParam("id_param") int idAdmin ){
-			Admin admin=adminService.getAdminById(idAdmin);
-			model.addAttribute("adminForm", admin);
-			
-			return "ajouterAdmin";
+//			logger.debug("deleteUser() : {}", id);
+
+			adminService.deleteAdmin(id);
+
+//			redirectAttributes.addFlashAttribute("css", "success");
+//			redirectAttributes.addFlashAttribute("msg", "User is deleted!");
+
+			return "afficherListe";
+
 		}
+
 	
 	
 	
