@@ -24,17 +24,16 @@ public class ProduitServiceImpl implements IProduitService {
 	 * méthodes d'authentification et de gestion des produit
 	 */
 
-
 	@Override
 	public List<Produit> getAllProduit() {
 		return produitDao.getAllProduit();
 	}
-	
+
 	@Override
 	public Produit getProduitById(int id) {
 		return produitDao.getProduitById(id);
 	}
-	
+
 	@Override
 	public Produit addProduit(Produit produit) {
 		return produitDao.addProduit(produit);
@@ -50,9 +49,15 @@ public class ProduitServiceImpl implements IProduitService {
 		produitDao.deleteProduit(produit);
 	}
 
+	@Override
+	public List<Produit> getAllProduitByIdCategorie(int id_cat) {
+		return produitDao.getAllProduitByIdCategorie(id_cat);
 
+	}
 
-
-
+	@Override
+	public List<Produit> getAllProduitsByKeyWord(String keyWord) {
+		return produitDao.getAllProduitsByKeyWord(keyWord);
+	}
 
 }

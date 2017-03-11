@@ -1,0 +1,60 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	font-family: Times, serif;
+	font-size: large;
+	text-shadow: 3px 2px 5px #888888;
+	
+}
+
+.header {
+	padding-top: 20px;
+
+	width: 1500px;
+	padding-bottom: 10px;
+	background: linear-gradient(to right bottom, white 48%, green);
+	box-shadow: 5px 5px 5px #888888;
+}
+
+.decoBut{
+	border: none;
+	background-color: white;
+	text-decoration: none;
+	text-shadow: 3px 2px 5px #888888;
+	color: rgb(10, 40, 10);
+	cursor: pointer;
+} 
+	
+/* Début du style de la barre de menu */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: rgb(230,230,0);
+}
+/* Fin du style de la barre de menu */
+
+
+
+
