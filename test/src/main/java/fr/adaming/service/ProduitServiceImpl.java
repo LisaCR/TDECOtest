@@ -52,7 +52,7 @@ public class ProduitServiceImpl implements IProduitService {
 	}
 
 	@Override
-	public List<Produit> getAllProduitByIdCategorie(int id_cat) {
+	public List<Produit> getAllProduitByIdCategorie(long id_cat) {
 		return produitDao.getAllProduitByIdCategorie(id_cat);
 
 	}

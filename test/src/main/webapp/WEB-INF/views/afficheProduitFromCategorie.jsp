@@ -31,7 +31,7 @@
 				<td>${prod.designation}</td>
 				<td>${prod.description}</td>
 				<td>${prod.prix}</td>
-				<td><a href="ajouterPanier/${prod.idProduit}">Ajouter au
+				<td><a href="${pageContext.request.contextPath}/magasin/ajouterPanier/${prod.idProduit}">Ajouter au
 						panier</a></td>
 			</tr>
 

@@ -59,7 +59,7 @@ public class ProduitDaoImpl implements IProduitDao {
 	}
 
 	@Override
-	public List<Produit> getAllProduitByIdCategorie(int id_cat) {
+	public List<Produit> getAllProduitByIdCategorie(long id_cat) {
 		Session s = sf.getCurrentSession();
 		String req = "select p from Produit p where p.categorie.idCategorie=:idProduit";
 		Query query = s.createQuery(req);
