@@ -46,10 +46,10 @@ xmlns:security="http://www.springframework.org/schema/security"
 
 	<beans:bean id="dataSourceBean"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<beans:property name="driverClassName" value="${db.driver}" />
-		<beans:property name="url" value="${db.url}" />
-		<beans:property name="username" value="${db.username}" />
-		<beans:property name="password" value="${db.password}" />
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="url" value="jdbc:mysql://localhost:3306/db_tpeco2?createDatabaseIfNotExist=true" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="root" />
 	</beans:bean>
 	
   <!-- 1. requête 1 : retourne nom, password et si utilisateur activé ou non -->
