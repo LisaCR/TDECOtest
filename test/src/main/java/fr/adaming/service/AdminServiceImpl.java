@@ -12,6 +12,7 @@ import fr.adaming.model.Categorie;
 import fr.adaming.model.Produit;
 
 @Service("adminService")
+@Transactional
 public class AdminServiceImpl implements IAdminService {
 
 	@Autowired

@@ -13,7 +13,6 @@ import fr.adaming.model.Admin;
 
 
 @Repository("adminDao")
-@Transactional
 public class AdminDaoImpl implements IAdminDao {
 
 	/**
