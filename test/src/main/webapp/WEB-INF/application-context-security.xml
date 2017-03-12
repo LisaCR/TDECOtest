@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- déclaration du schéma XML de spring security pour pouvoir l'utiliser -->
+<!-- permet d'utiliser directement les balises de spring security -->
+
+  <beans:beans
+xmlns:security="http://www.springframework.org/schema/security"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xmlns:beans="http://www.springframework.org/schema/beans"  
+ xsi:schemaLocation=" 
+  http://www.springframework.org/schema/beans  
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/security  
+  http://www.springframework.org/schema/security/spring-security.xsd">
+ 
+ <!-- configuration élémentaire pour une application web -->
+ <!-- 1. auto-config : déclaration d'une configuration par défaut
+ positionne une authentification via un formulaire généré dynamiquement  -->
+ <security:http auto-config="true">
+ <!-- règle d'accès  aux pages superAdmin pour le superAdmin -->
+   <security:intercept-url pattern="/**" access="ROLE_SUPERADMIN" />
+ <!-- règle d'accès  aux pages admin pour l'admin -->
+    <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+    
+    <!-- authentification par formulaire -->
+     <security:form-login login-page="/adminForm" authentication-failure-url="/adminForm"
+    default-target-url="/accueilAdmin"  username-parameter="nom_admin"
+			password-parameter="password_admin"/> 
+
+
+
+    
+    <!-- impose le passage sur https des pages login -->
+<!--   <intercept-url pattern="/login" requires-channel="https" /> -->
+<!--     <intercept-url pattern="/admin/**" requires-channel="https" access="ROLE_ADMIN" /> 
+        <intercept-url pattern="/superAdmin/**" requires-channel="https" access="ROLE_SUPERADMIN" /> 
+    <intercept-url pattern="/client/**" requires-channel="http" access="ROLE_CLIENT" /> -->
+    
+ </security:http>
+ 
+ 
+ <!-- METHODE PLUS CLASSIQUE EN ENTREPRISE -->
+ <!-- authentification avec BDD -->
+<!-- utilisation de jdbc-user-service imbriquée avec authentication-provider -->
+<!-- nécessite une dataSource -->
+
+  <!-- 1. requête 1 : retourne nom, password et si utilisateur activé ou non -->
+  <!-- 2. requête 2 : retrouve couple login-role, un utilisateur peut avoir plusieurs roles? -->
+    <security:authentication-manager>
+  <security:authentication-provider>
+     <security:jdbc-user-service data-source-ref="dataSourceBean"   
+     users-by-username-query="SELECT nom_admin, password_admin FROM admins WHERE nom_admin = ?"  
+     authorities-by-username-query="SELECT nom_admin, role_admin FROM admins      
+      WHERE nom_admin = ?"/>
+   </security:authentication-provider>
+</security:authentication-manager>
+</beans:beans>

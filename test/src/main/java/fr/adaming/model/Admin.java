@@ -30,6 +30,12 @@ public class Admin {
 	@Column(name="password_admin")
 	private String passwordAdmin;
 	
+	/**
+	 * rôle de l'admin
+	 */
+	@Column(name="role_admin")
+	private String role;
+	
 /**
  * 	get et set
  * @return
@@ -53,6 +59,14 @@ public class Admin {
 		this.passwordAdmin = passwordAdmin;
 	}
 	
+	
+	
+public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 /**
  * 	constructeurs
  * @param idAdmin
@@ -67,6 +81,14 @@ public class Admin {
 	}
 	
 	
+	
+	
+public Admin(String nomAdmin, String passwordAdmin, String role) {
+	super();
+	this.nomAdmin = nomAdmin;
+	this.passwordAdmin = passwordAdmin;
+	this.role = role;
+}
 public Admin() {
 	super();
 }
@@ -81,7 +103,8 @@ public Admin(String nomAdmin, String passwordAdmin) {
 
 @Override
 public String toString() {
-	return "Admin [idAdmin=" + idAdmin + ", nomAdmin=" + nomAdmin + ", passwordAdmin=" + passwordAdmin + "]";
+	return "Admin [idAdmin=" + idAdmin + ", nomAdmin=" + nomAdmin + ", passwordAdmin=" + passwordAdmin + ", role="
+			+ role + "]";
 }
 
 	
