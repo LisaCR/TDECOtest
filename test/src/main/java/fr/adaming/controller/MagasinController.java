@@ -73,7 +73,7 @@ public class MagasinController {
 	}
 
 	@RequestMapping(value = "/afficheProduitFromCategorie/{id_cat_param}", method = RequestMethod.GET)
-	public String afficherProdFromCat(ModelMap model, @PathVariable("id_cat_param") int id_cat,
+	public String afficherProdFromCat(ModelMap model, @PathVariable("id_cat_param") long id_cat,
 			HttpServletRequest req) {
 
 		HttpSession session = req.getSession();
@@ -92,7 +92,8 @@ public class MagasinController {
 	}
 
 	@RequestMapping(value = "/ajouterPanier/{id_prod_param}", method = RequestMethod.GET)
-	public String ajouterPanier(ModelMap model, @PathVariable("id_prod_param") int id_prod, HttpServletRequest req) {
+	public String ajouterPanier(ModelMap model, @PathVariable("id_prod_param") int id_prod, HttpServletRequest req,
+			@PathVariable("id_cat_param") long id_cat) {
 
 		HttpSession session = req.getSession();
 		Categorie categorie = (Categorie) session.getAttribute("categorieSes");
@@ -120,9 +121,11 @@ public class MagasinController {
 			produit.setQuantite(NewQte);
 		}
 		panier.put(produit.getDesignation(), produit);
-		
+
 		session.setAttribute("panierSes", panier);
-		return "afficheProduitFromCategorie";
+		
+		id_cat = categorie.getIdCategorie();
+		return "redirect:/magasin/afficheProduitFromCategorie/{id_cat_param}";
 	}
 
 	@RequestMapping(value = "/affichFormKW", method = RequestMethod.GET)
@@ -170,16 +173,16 @@ public class MagasinController {
 			produit.setQuantite(NewQte);
 		}
 		panier.put(produit.getDesignation(), produit);
-		
+
 		session.setAttribute("panierSes", panier);
-		return "produitByKWResultat";
+		return "redirect:/magasin/produitByKWResultat";
 	}
 
 	@RequestMapping(value = "/afficherPanier", method = RequestMethod.GET)
 	public String afficherPanier(ModelMap model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Map<String, Produit> panier = (HashMap<String, Produit>) session.getAttribute("panierSes");
-		
+
 		Set<Entry<String, Produit>> setTemp = panier.entrySet();
 		List<Produit> listePanier = new ArrayList<Produit>();
 		double totalPanier = 0;
@@ -189,22 +192,22 @@ public class MagasinController {
 			System.out.println("tot " + totalPanier);
 			System.out.println(entry.getValue());
 		}
-		model.addAttribute("totalPanier",totalPanier);
-		model.addAttribute("panier",listePanier);
+		model.addAttribute("totalPanier", totalPanier);
+		model.addAttribute("panier", listePanier);
 		return "afficherPanier";
 	}
 
 	@RequestMapping(value = "/supprimerPanier/{id_prod_param}", method = RequestMethod.GET)
-	public String supprimerPanier(ModelMap model, @PathVariable("id_prod_param") int id_prod,HttpServletRequest req) {
+	public String supprimerPanier(ModelMap model, @PathVariable("id_prod_param") int id_prod, HttpServletRequest req) {
 
 		HttpSession session = req.getSession();
-		
+
 		Map<String, Produit> panier = (HashMap<String, Produit>) session.getAttribute("panierSes");
-		
+
 		Produit produit = produitService.getProduitById(id_prod);
 
 		panier.remove(produit.getDesignation());
-		
+
 		session.setAttribute("panierSes", panier);
 
 		return "afficherPanier";
