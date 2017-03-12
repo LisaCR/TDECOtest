@@ -56,7 +56,7 @@ xmlns:security="http://www.springframework.org/schema/security"
   <!-- 2. requête 2 : retrouve couple login-role, un utilisateur peut avoir plusieurs roles? -->
     <security:authentication-manager>
   <security:authentication-provider>
-     <security:jdbc-user-service data-source-ref="dataSource"   
+     <security:jdbc-user-service data-source-ref="dataSourceBean"   
      users-by-username-query="SELECT nom_admin, password_admin FROM admins WHERE nom_admin = ?"  
      authorities-by-username-query="SELECT nom_admin, role_admin FROM admins      
       WHERE nom_admin = ?"/>
