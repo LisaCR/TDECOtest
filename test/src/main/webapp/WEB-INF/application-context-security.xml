@@ -25,7 +25,7 @@ xmlns:security="http://www.springframework.org/schema/security"
     <!-- authentification par formulaire -->
      <security:form-login login-page="/adminForm" authentication-failure-url="/adminForm"
     default-target-url="/accueilAdmin"  username-parameter="nom_admin"
-			password-parameter="password_admin"/> 
+			password-parameter="password_admin" /> 
 
 
 
