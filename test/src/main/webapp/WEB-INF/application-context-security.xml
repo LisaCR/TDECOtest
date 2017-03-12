@@ -18,7 +18,7 @@ xmlns:security="http://www.springframework.org/schema/security"
  positionne une authentification via un formulaire généré dynamiquement  -->
  <security:http auto-config="true">
  <!-- règle d'accès  aux pages superAdmin pour le superAdmin -->
-   <security:intercept-url pattern="/**" access="ROLE_SUPERADMIN" />
+   <security:intercept-url pattern="/superAdmin/**" access="ROLE_SUPERADMIN" />
  <!-- règle d'accès  aux pages admin pour l'admin -->
     <security:intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
     

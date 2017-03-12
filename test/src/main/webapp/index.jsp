@@ -11,9 +11,9 @@
 
 
 
-<a href="${pageContext.request.contextPath}/admin/accueilAdmin">Accueil admin</a>
-<a href="${pageContext.request.contextPath}/admin/accueilSuperAdmin">Accueil superAdmin</a>
-<a href="${pageContext.request.contextPath}/client/accueilClient">Accueil client</a>
+<%-- <a href="${pageContext.request.contextPath}/admin/accueilAdmin">Accueil admin</a> --%>
+<%-- <a href="${pageContext.request.contextPath}/admin/accueilSuperAdmin">Accueil superAdmin</a> --%>
+<%-- <a href="${pageContext.request.contextPath}/client/accueilClient">Accueil client</a> --%>
 
 </body>
 </html>
