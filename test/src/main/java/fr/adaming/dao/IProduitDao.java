@@ -12,7 +12,7 @@ public interface IProduitDao {
 	public Produit addProduit(Produit produit);
 	public void updateProduit(Produit produit);
 	public void deleteProduit(Produit produit);
-	public List<Produit> getAllProduitByIdCategorie(int id_cat);
+	public List<Produit> getAllProduitByIdCategorie(long id_cat);
 	public List<Produit> getAllProduitsByKeyWord(String keyWord);
 
 

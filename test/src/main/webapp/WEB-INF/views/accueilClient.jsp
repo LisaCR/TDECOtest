@@ -10,10 +10,9 @@
 
 	<ul>
 		<li><a class="active" href="accueilClient">Accueil</a></li>
-		<li><a href="">Section Admin</a></li>
-		<li><a href="">Liste des Catégories</a></li>
-		<li><a href="">Trouver un Produit</a></li>
-		<li><a href="">Accéder au Panier</a></li>
+		<li><a href="listeCategories">Liste des Catégories</a></li>
+		<li><a href="affichFormKW">Trouver un Produit</a></li>
+		<li><a href="afficherPanier">Accéder au Panier</a></li>
 	</ul>
 
 </body>
