@@ -44,11 +44,19 @@ xmlns:security="http://www.springframework.org/schema/security"
 <!-- utilisation de jdbc-user-service imbriquée avec authentication-provider -->
 <!-- nécessite une dataSource -->
 
+	<beans:bean id="dataSourceBean"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="${db.driver}" />
+		<beans:property name="url" value="${db.url}" />
+		<beans:property name="username" value="${db.username}" />
+		<beans:property name="password" value="${db.password}" />
+	</beans:bean>
+	
   <!-- 1. requête 1 : retourne nom, password et si utilisateur activé ou non -->
   <!-- 2. requête 2 : retrouve couple login-role, un utilisateur peut avoir plusieurs roles? -->
     <security:authentication-manager>
   <security:authentication-provider>
-     <security:jdbc-user-service data-source-ref="dataSourceBean"   
+     <security:jdbc-user-service data-source-ref="dataSource"   
      users-by-username-query="SELECT nom_admin, password_admin FROM admins WHERE nom_admin = ?"  
      authorities-by-username-query="SELECT nom_admin, role_admin FROM admins      
       WHERE nom_admin = ?"/>
