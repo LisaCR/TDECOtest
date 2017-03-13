@@ -6,18 +6,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/w3.css" />"></link>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/CommerceStyle.css" />"></link>
 </head>
 <body>
 
+
 	<h1
 		style="background-color: lightgreen; color: darkgreen; text-align: center;">
-		${nomApp}</h1>
+		Interface Administrateur</h1>
 
 	<h1
 		style="background-color: lightblue; color: darkgreen; text-align: center; font-size: 16pt">
 	  ${salutation}	
 	</h1>
-	
+		<spring:url value="/admin/listeAdmin" var="adminUrl" />
+<button class="btn btn-danger" onclick="location.href='${adminUrl}'">Gestion des admins</button>
 	<spring:url value="/produit/listeProduit" var="produitUrl" />
 <button class="btn btn-danger" onclick="location.href='${produitUrl}'">Gestion des produits</button>
 <spring:url value="/categorie/listeCategorie" var="categorieUrl" />

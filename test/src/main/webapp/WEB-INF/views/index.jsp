@@ -13,23 +13,20 @@
 </head>
 <body>
 
-	<ul>
-		<li><a class="active" href="${pageContext.request.contextPath}/admin/accueilAdmin">Accueil admin</a></li>
-		<li><a class="active" href="${pageContext.request.contextPath}/admin/accueilGeneral">Accueil général</a></li>
-		<li><a href="${pageContext.request.contextPath}/admin/listeAdmin">Gestion des administrateurs</a></li>
-		<li><a href="${pageContext.request.contextPath}/produit/listeProduit">Gestion des produits</a></li>
-		<li><a href="${pageContext.request.contextPath}/categorie/listeCategorie">Gestion des catégories</a></li>
-	</ul>
 
 	<h1
 		style="background-color: lightgreen; color: darkgreen; text-align: center;">
-		${nomApp}</h1>
+		Interface Administrateur</h1>
 
 	<h1
 		style="background-color: lightblue; color: darkgreen; text-align: center; font-size: 16pt">
 	  ${salutation}	
 	</h1>
-	
+		<spring:url value="admin/accueilAdmin" var="adminUrl" />
+<button class="btn btn-danger" onclick="location.href='${adminUrl}'">Accueil admins</button>
+	<spring:url value="/magasin/accueilClient" var="produitUrl" />
+<button class="btn btn-danger" onclick="location.href='${produitUrl}'">Accueil clients</button>
 
+	
 </body>
 </html>

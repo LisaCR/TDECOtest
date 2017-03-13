@@ -9,8 +9,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/w3.css" />"></link>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/CommerceStyle.css" />"></link>
 </head>
 <body>
+
+	<ul>
+	<%-- 		<li><a class="active" href="${pageContext.request.contextPath}/admin/accueilGeneral">Accueil général</a></li> --%>
+		<li><a class="active" href="${pageContext.request.contextPath}/admin/accueilAdmin">Accueil admin</a></li>
+		<li><a href="${pageContext.request.contextPath}/admin/listeAdmin">Gestion des administrateurs</a></li>
+		<li><a href="${pageContext.request.contextPath}/produit/listeProduit">Gestion des produits</a></li>
+		<li><a href="${pageContext.request.contextPath}/categorie/listeCategorie">Gestion des catégories</a></li>
+	</ul>
 	<h1 align="center">liste Admin</h1>
 
 
@@ -29,6 +41,7 @@
 			<th>ID</th>
 			<th>Nom</th>
 			<th>Mail</th>
+			<th>Action</th>
 <!-- 			<th>Supp/Edit</th> -->
 		</tr>
 		<c:forEach var="admin" items="${adminListe}">
@@ -36,25 +49,19 @@
 				<td>${admin.idAdmin}</td>
 				<td>${admin.nomAdmin}</td>
 				<td>${admin.passwordAdmin}</td>
-				<%-- <td><a href="soumettreFormSuppr/${admin.id}">Supprimer</a> | <a href="affichFormmodif?id_param=${admin.id}">Editer</a> </td> --%>
-		
-		</tr>
-		
 			<td>
 				  <spring:url value="/admin/${admin.idAdmin}" var="adminUrl" />
 				  <spring:url value="/admin/${admin.idAdmin}/delete" var="deleteUrl" />
-				  <spring:url value="/admin/${admin.idAdmin}/update" var="updateUrl" />
-
-				  <button class="btn btn-info"
-                                          onclick="location.href='${adminUrl}'">Query</button>
-				  <button class="btn btn-primary"
-                                          onclick="location.href='${updateUrl}'">Update</button>
-				  <button class="btn btn-danger"
-                                          onclick="location.href='${deleteUrl}'">Delete</button>
+				  <button class="btn btn-danger" onclick="location.href='${deleteUrl}'">Delete</button>
                   </td>
-                  
+                  </tr>
 		</c:forEach>
 
 	</table>
+	
+		<spring:url value="/admin/${admin.idAdmin}/affichFormAjout" var="addUrl" />
+<button class="btn btn-danger" onclick="location.href='${addUrl}'">Add</button>
+     
+     
 </body>
 </html>

@@ -33,11 +33,21 @@ public class AdminController {
 	/**
 	 * définition et mapping accueil
 	 */
-	@RequestMapping(value = "/accueil", method = RequestMethod.GET)
+	@RequestMapping(value = "/accueilAdmin", method = RequestMethod.GET)
 	public String accueil(ModelMap model) {
 		model.addAttribute("nomApp", "APPLICATION DE GESTION DES ADMINS");
 		model.addAttribute("salutation", "Avec SPRING MVC");
-		return "accueil";
+		return "accueilAdmin";
+	}
+	
+	/**
+	 * retour vers accueil général
+	 */
+	@RequestMapping(value = "/accueilGeneral", method = RequestMethod.GET)
+	public String accueilGeneral(ModelMap model) {
+		model.addAttribute("nomApp", "Magasin");
+		model.addAttribute("salutation", "Avec SPRING MVC");
+		return "index";
 	}
 
 	/**

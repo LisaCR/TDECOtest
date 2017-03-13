@@ -13,8 +13,21 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/CommerceStyle.css" />"></link>
 
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/w3.css" />"></link>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/CommerceStyle.css" />"></link>
 </head>
 <body>
+
+	<ul>
+		<li><a class="active" href="${pageContext.request.contextPath}/admin/accueilSuperAdmin">Accueil</a></li>
+			<li><a class="active" href="${pageContext.request.contextPath}/admin/accueil">Accueil</a></li>
+		<li><a href="${pageContext.request.contextPath}/admin/listeAdmin">Afficher un administrateur par id</a></li>
+		<li><a href="${pageContext.request.contextPath}/admin/ajouterAdmin">Ajouter un administrateur</a></li>
+		<li><a href="${pageContext.request.contextPath}/produit/listeProduit">Gestion des produits</a></li>
+		<li><a href="${pageContext.request.contextPath}/categorie/listeCategorie">Gestion des catégories</a></li>
+	</ul>
 
 	<ul>
 		<li><a href="${pageContext.request.contextPath}/magasin/accueilClient">Accueil</a></li>
