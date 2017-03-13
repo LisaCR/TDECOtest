@@ -122,8 +122,7 @@ public class MagasinController {
 		panier.put(produit.getDesignation(), produit);
 
 		session.setAttribute("panierSes", panier);
-		
-		
+
 		return "afficheProduitFromCategorie";
 	}
 
@@ -180,25 +179,33 @@ public class MagasinController {
 	@RequestMapping(value = "/afficherPanier", method = RequestMethod.GET)
 	public String afficherPanier(ModelMap model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		Map<String, Produit> panier = (HashMap<String, Produit>) session.getAttribute("panierSes");
-		
-		if(panier.size()==0){
-			Produit p = new Produit();
-		panier.put("init", p);	
+		Map<String, Produit> panier = new HashMap<String, Produit>();
+
+		if (session.getAttribute("panierSes") != null) {
+			panier = (HashMap<String, Produit>) session.getAttribute("panierSes");
 		}
-		
-		Set<Entry<String, Produit>> setTemp = panier.entrySet();
+
+		double totalPanier = 0.0;
 		List<Produit> listePanier = new ArrayList<Produit>();
-		double totalPanier = 0;
-		for (Entry<String, Produit> entry : setTemp) {
-			listePanier.add(entry.getValue());
-			totalPanier += (entry.getValue().getPrix()) * (entry.getValue().getQuantite());
-			System.out.println("tot " + totalPanier);
-			System.out.println(entry.getValue());
+
+		if (panier.size() != 0) {
+			// Produit p = new Produit("Pas de produit", null, 0);
+			// panier.put("init", p);
+
+			Set<Entry<String, Produit>> setTemp = panier.entrySet();
+
+			for (Entry<String, Produit> entry : setTemp) {
+				listePanier.add(entry.getValue());
+				totalPanier += (entry.getValue().getPrix()) * (entry.getValue().getQuantite());
+				System.out.println("tot " + totalPanier);
+				System.out.println(entry.getValue());
+			}
 		}
 		model.addAttribute("totalPanier", totalPanier);
 		model.addAttribute("panier", listePanier);
+
 		return "afficherPanier";
+
 	}
 
 	@RequestMapping(value = "/supprimerPanier/{id_prod_param}", method = RequestMethod.GET)
@@ -213,8 +220,8 @@ public class MagasinController {
 		panier.remove(produit.getDesignation());
 
 		session.setAttribute("panierSes", panier);
-		
-		//rafraichir le panier
+
+		// rafraichir le panier
 		Set<Entry<String, Produit>> setTemp = panier.entrySet();
 		List<Produit> listePanier = new ArrayList<Produit>();
 		double totalPanier = 0;
