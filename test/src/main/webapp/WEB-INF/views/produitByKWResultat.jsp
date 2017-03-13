@@ -7,34 +7,48 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Liste Produit KW</title>
+
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/w3.css" />" ></link>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/CommerceStyle.css" />"></link>
+
 </head>
 <body>
-	<h1>Produits par mot clé</h1>
 
-	<table>
+	<ul>
+		<li><a href="${pageContext.request.contextPath}/magasin/accueilClient">Accueil</a></li>
+		<li><a href="${pageContext.request.contextPath}/magasin/listeCategories">Liste des Catégories</a></li>
+		<li><a class="active" href="${pageContext.request.contextPath}/magasin/affichFormKW">Trouver un Produit</a></li>
+		<li><a href="${pageContext.request.contextPath}/magasin/afficherPanier">Accéder au Panier</a></li>
+	</ul>
 
-		<tr>
-			<th>ID</th>
-			<th>Produit</th>
-			<th>Déscription</th>
-			<th>Prix</th>
-			<th></th>
-		</tr>
+	<div class="divCorps">
+		<h1>Produits par mot clé</h1>
 
-		<c:forEach var="prod" items="${prodListeKW}">
+		<table>
 
 			<tr>
-				<td>${prod.idProduit}</td>
-				<td>${prod.designation}</td>
-				<td>${prod.description}</td>
-				<td>${prod.prix}</td>
-				<td><a href="ajouterPanierKW/${prod.idProduit}">Ajouter au
-						panier</a></td>
+				<th>ID</th>
+				<th>Produit</th>
+				<th>Déscription</th>
+				<th>Prix</th>
+				<th></th>
 			</tr>
 
-		</c:forEach>
+			<c:forEach var="prod" items="${prodListeKW}">
 
-	</table>
+				<tr>
+					<td>${prod.idProduit}</td>
+					<td>${prod.designation}</td>
+					<td>${prod.description}</td>
+					<td>${prod.prix}</td>
+					<td><a
+						href="${pageContext.request.contextPath}/magasin/ajouterPanierKW/${prod.idProduit}">Ajouter
+							au panier</a></td>
+				</tr>
 
+			</c:forEach>
+
+		</table>
+	</div>
 </body>
 </html>

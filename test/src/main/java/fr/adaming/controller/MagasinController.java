@@ -92,8 +92,7 @@ public class MagasinController {
 	}
 
 	@RequestMapping(value = "/ajouterPanier/{id_prod_param}", method = RequestMethod.GET)
-	public String ajouterPanier(ModelMap model, @PathVariable("id_prod_param") int id_prod, HttpServletRequest req,
-			@PathVariable("id_cat_param") long id_cat) {
+	public String ajouterPanier(ModelMap model, @PathVariable("id_prod_param") int id_prod, HttpServletRequest req) {
 
 		HttpSession session = req.getSession();
 		Categorie categorie = (Categorie) session.getAttribute("categorieSes");
@@ -124,8 +123,8 @@ public class MagasinController {
 
 		session.setAttribute("panierSes", panier);
 		
-		id_cat = categorie.getIdCategorie();
-		return "redirect:/magasin/afficheProduitFromCategorie/{id_cat_param}";
+		
+		return "afficheProduitFromCategorie";
 	}
 
 	@RequestMapping(value = "/affichFormKW", method = RequestMethod.GET)
@@ -175,14 +174,19 @@ public class MagasinController {
 		panier.put(produit.getDesignation(), produit);
 
 		session.setAttribute("panierSes", panier);
-		return "redirect:/magasin/produitByKWResultat";
+		return "produitByKWResultat";
 	}
 
 	@RequestMapping(value = "/afficherPanier", method = RequestMethod.GET)
 	public String afficherPanier(ModelMap model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		Map<String, Produit> panier = (HashMap<String, Produit>) session.getAttribute("panierSes");
-
+		
+		if(panier.size()==0){
+			Produit p = new Produit();
+		panier.put("init", p);	
+		}
+		
 		Set<Entry<String, Produit>> setTemp = panier.entrySet();
 		List<Produit> listePanier = new ArrayList<Produit>();
 		double totalPanier = 0;
@@ -209,6 +213,19 @@ public class MagasinController {
 		panier.remove(produit.getDesignation());
 
 		session.setAttribute("panierSes", panier);
+		
+		//rafraichir le panier
+		Set<Entry<String, Produit>> setTemp = panier.entrySet();
+		List<Produit> listePanier = new ArrayList<Produit>();
+		double totalPanier = 0;
+		for (Entry<String, Produit> entry : setTemp) {
+			listePanier.add(entry.getValue());
+			totalPanier += (entry.getValue().getPrix()) * (entry.getValue().getQuantite());
+			System.out.println("tot " + totalPanier);
+			System.out.println(entry.getValue());
+		}
+		model.addAttribute("totalPanier", totalPanier);
+		model.addAttribute("panier", listePanier);
 
 		return "afficherPanier";
 	}

@@ -7,25 +7,40 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Liste Produit KW</title>
+
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/w3.css" />"></link>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/CommerceStyle.css" />"></link>
+
 </head>
 <body>
-	<h1>Produits par mot clé</h1>
 
-	<form:form method="POST" action="soumettreFormKW" commandName="prodKW">
-		<table>
+	<ul>
+		<li><a href="${pageContext.request.contextPath}/magasin/accueilClient">Accueil</a></li>
+		<li><a href="${pageContext.request.contextPath}/magasin/listeCategories">Liste des Catégories</a></li>
+		<li><a class="active" href="${pageContext.request.contextPath}/magasin/affichFormKW">Trouver un Produit</a></li>
+		<li><a href="${pageContext.request.contextPath}/magasin/afficherPanier">Accéder au Panier</a></li>
+	</ul>
 
-			<tr>
-				<td>Mot Clé :</td>
-				<td><form:input path="designation" /></td>
-			</tr>
+	<div class="divCorps" style="width: 400px; border: solid gray 1px">
+		<div class="w3-container" style="background-color: rgb(230, 230, 0); font-family: Times">
+			<h1 style="font-family: Times, serif">Produits par mot clé</h1>
+		</div>
 
-			<tr>
-				<td><input type="submit" value="Rechercher" /></td>
-			</tr>
+		<form:form method="POST" action="soumettreFormKW" commandName="prodKW"
+			cssClass="w3-container">
+			<p>
+				<label>Mot Clé :</label>
+			</p>
+			<p>
+				<form:input path="designation" cssClass="w3-input" />
+			</p>
+			<p>
+				<input class="button buttonSh" type="submit" value="Rechercher" />
+			</p>
+		</form:form>
 
-		</table>
-	</form:form>
-
-
+	</div>
 </body>
 </html>

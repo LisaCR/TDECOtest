@@ -4,57 +4,103 @@ body {
 	font-family: Times, serif;
 	font-size: large;
 	text-shadow: 3px 2px 5px #888888;
-	
 }
 
 .header {
 	padding-top: 20px;
-
 	width: 1500px;
 	padding-bottom: 10px;
 	background: linear-gradient(to right bottom, white 48%, green);
 	box-shadow: 5px 5px 5px #888888;
 }
 
-.decoBut{
+.decoBut {
 	border: none;
 	background-color: white;
 	text-decoration: none;
 	text-shadow: 3px 2px 5px #888888;
 	color: rgb(10, 40, 10);
 	cursor: pointer;
-} 
-	
+}
+
 /* Début du style de la barre de menu */
 ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
+	list-style-type: none;
+	margin-left: 50px;
+	
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	width: 1400px;
 }
 
 li {
-    float: left;
+	float: left;
 }
 
 li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
 }
 
-li a:hover:not(.active) {
-    background-color: #111;
+li a:hover:not(.active )
+{
+background-color:#111;
+
 }
 
 .active {
-    background-color: rgb(230,230,0);
+	background-color: rgb(230, 230, 0);
 }
 /* Fin du style de la barre de menu */
 
+/* Début style des tableaux */
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
 
+th, td {
+	text-align: center;
+	padding: 8px;
+}
 
+tr:nth-child(even) {
+	background-color: #f2f2f2
+}
 
+th {
+	background-color: rgb(230, 230, 0);
+	color: white;
+}
+
+/* Fin style des tableaux */
+
+.divCorps {
+	margin-left: 50px;
+	margin-top: 35px;
+	width: 1000px;
+}
+
+.button {
+	background-color: rgb(230, 230, 0);
+	border: none;
+	color: black;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	margin: 4px 2px;
+	cursor: pointer;
+	transition-duration: 0.4s;
+	border: none;
+}
+
+.buttonSh:hover {
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0
+		rgba(0, 0, 0, 0.19);
+}

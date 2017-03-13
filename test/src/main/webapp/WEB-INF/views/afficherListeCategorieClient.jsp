@@ -7,32 +7,48 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Liste des Categories</title>
+
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/w3.css" />"></link>
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/CommerceStyle.css" />"></link>
+
 </head>
 <body>
-	<h1>Liste des Catégories</h1>
 
-	<table>
-		<tr>
-			<th>ID</th>
-			<th>Catégorie</th>
-			<th>Déscription</th>
-			<th></th>
-		</tr>
-		<c:forEach var="cat" items="${catListe}">
+	<ul>
+		<li><a href="${pageContext.request.contextPath}/magasin/accueilClient">Accueil</a></li>
+		<li><a class="active" href="${pageContext.request.contextPath}/magasin/listeCategories">Liste des
+				Catégories</a></li>
+		<li><a href="${pageContext.request.contextPath}/magasin/affichFormKW">Trouver un Produit</a></li>
+		<li><a href="${pageContext.request.contextPath}/magasin/afficherPanier">Accéder au Panier</a></li>
+	</ul>
+
+	<div class="divCorps">
+		<h1>Liste des Catégories</h1>
+
+		<table>
 			<tr>
-				<td>${cat.idCategorie}</td>
-				<td>${cat.nomCategorie}</td>
-				<td>${cat.description}</td>
-				<td><a href="afficheProduitFromCategorie/${cat.idCategorie}">Afficher
-						les produits</a></td>
+				<th>ID</th>
+				<th>Catégorie</th>
+				<th>Déscription</th>
+				<th></th>
 			</tr>
+			<c:forEach var="cat" items="${catListe}">
+				<tr>
+					<td>${cat.idCategorie}</td>
+					<td>${cat.nomCategorie}</td>
+					<td>${cat.description}</td>
+					<td><a href="${pageContext.request.contextPath}/afficheProduitFromCategorie/${cat.idCategorie}">Afficher
+							les produits</a></td>
+				</tr>
 
-		</c:forEach>
+			</c:forEach>
+
+		
 
 
-
-
-	</table>
-
+		</table>
+	</div>
 </body>
 </html>

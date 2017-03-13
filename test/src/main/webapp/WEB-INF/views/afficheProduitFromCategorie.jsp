@@ -8,9 +8,21 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Produits par Catégorie</title>
+
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/w3.css" />" ></link>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/CommerceStyle.css" />"></link>
+
 </head>
 <body>
 
+	<ul>
+		<li><a href="${pageContext.request.contextPath}/magasin/accueilClient">Accueil</a></li>
+		<li><a class="active" href="${pageContext.request.contextPath}/magasin/listeCategories">Liste des Catégories</a></li>
+		<li><a href="${pageContext.request.contextPath}/magasin/affichFormKW">Trouver un Produit</a></li>
+		<li><a href="${pageContext.request.contextPath}/magasin/afficherPanier">Accéder au Panier</a></li>
+	</ul>
+
+<div class="divCorps">
 	<h1>Liste des Produits de la Catégorie :
 		${selectedCat.nomCategorie}</h1>
 
@@ -38,6 +50,6 @@
 		</c:forEach>
 
 	</table>
-
+</div>
 </body>
 </html>
